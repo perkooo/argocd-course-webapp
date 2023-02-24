@@ -14,6 +14,7 @@ jobs:
     steps:
       - run: echo "building and testing the app ..."
   docker-build-push:
+    environment: argocd-course
     runs-on: ubuntu-latest
     needs: build-test
     steps:
@@ -41,6 +42,7 @@ jobs:
           push: true
           tags: mabusaa/argocd-course-webapp:${{ github.sha }}
   promote-to-dev-environment:
+    environment: argocd-course
     runs-on: ubuntu-latest
     needs: docker-build-push
     steps:
